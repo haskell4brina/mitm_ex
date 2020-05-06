@@ -256,8 +256,10 @@ defmodule Mitme.Gsm do
       _ ->
         nil
     end
-
-    flow = %{
+	
+	serverSocket = module.on_connect(serverSocket)
+    
+	flow = %{
       module: module,
       mode: :raw,
       sm: %{},
@@ -265,7 +267,6 @@ defmodule Mitme.Gsm do
       source: clientSocket
     }
 
-    flow = module.on_connect(flow)
 
     {:noreply, flow}
   end
